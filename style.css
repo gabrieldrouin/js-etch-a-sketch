@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+p {
+    margin-right: 2px;
+}
+
+button {
+    margin-right: 4px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    width: 500px;
+    height: 500px;
+    display: grid;
+    border: 1px solid;
+}
