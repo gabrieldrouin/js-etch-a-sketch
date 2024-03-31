@@ -12,18 +12,18 @@
         <div class="header"> 
             <p>Select a grid size:</p>
             <form>
-                <input type="range" min="10" max="50" class="slider" id="gridSlider" value="30"/>
+                <input type="range" min="10" max="30" class="slider" id="gridSlider" value="20"/>
                 <span id="gridValue"></span>
-                <input type="submit" value="OK" />
+                <button type="button" id="gridButton">OK</button>
             </form>
         </div>
         <div class="board">
-            <!--JS content-->
+            <!--grid content-->
         </div> 
         <div class="footer">
             <p>Select a color type:</p>
-            <button>Black</button>
-            <button>RGB</button>
+            <button type="button" id="blackButton">Black</button>
+            <button type="button" id="rgbButton">RGB</button>
         </div>
     </body>
 </html>

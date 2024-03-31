@@ -1,48 +1,57 @@
-/* "TIL" mentions are meant to document things I learned along the way. */
-
 console.log("js-etch-a-sketch V0.1.0\n\nCopyright © Gabriel Drouin 2024\n")
 
 // Global variables
 const slider = document.getElementById("gridSlider");
 const output = document.getElementById("gridValue");
+let gridColor = "black";
+let boardSize;
 
-// Create the initial board
+// Create initial board
 document.addEventListener("DOMContentLoaded", (event) => {
-    let defaultValue = slider.defaultValue;
+    const defaultValue = slider.defaultValue;
+    boardSize = defaultValue;
     createBoard(defaultValue);
     console.log(event);
 });
 
-/* TIL: Arrow functions do not have their 'this' or 'arguments' and need their
-parameters to be explicitely declared like above. In contrast, a regular function
-as an event handler with addEventListener passes the event object automatically
-as the first parameter to the function when the event occurs, like so:
-
-document.addEventListener("DOMContentLoaded", function() {
-    console.log(event);
-}); */
-
-
-
-// Display the slider value 
-output.innerHTML = slider.value; // Display the default slider value
-
+// Display slider value 
+output.innerHTML = slider.value;
 slider.oninput = () => {
     output.innerHTML = slider.value;
 }
 
-/* TIL: the 'this' keyword in an arrow function is determined by
-the surrounding code when the function is created, not when it is called.
-So in this context, we can only use 'this' with a regular function like so:
+// Buttons //
 
-slider.oninput = function() {
-  output.innerHTML = this.value;
-} */
+// Change board size
+const gridButton = document.querySelector("#gridButton")
+gridButton.addEventListener("click", () => {
+    boardSize = slider.value;
+    createBoard(boardSize);
+});
 
-// createBoard function
+// Change board color to black
+const blackButton = document.querySelector("#blackButton")
+blackButton.addEventListener("click", () => {
+    gridColor = "black";
+    createBoard(boardSize);
+});
+
+// Change board color to RGB
+const rgbButton = document.querySelector("#rgbButton")
+rgbButton.addEventListener("click", () => {
+    gridColor = "rgb";
+    createBoard(boardSize);
+});
+
+// Functions //
+
 function createBoard(size) {
     let board = document.querySelector(".board");
-    
+
+    while (board.firstChild) {
+        board.removeChild(board.lastChild);
+    }
+
     board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
@@ -50,13 +59,29 @@ function createBoard(size) {
 
     for (let i = 0; i < numDivs; i++) {
         let div = document.createElement("div");
+        div.addEventListener("mouseover", setColor);
+        div.style.backgroundColor = "white";
         div.style.borderStyle = "solid";
         div.style.borderWidth = "1px";
-        div.style.borderColor = "lightgray";
+        div.style.borderColor = "#dcdcdc";
         board.insertAdjacentElement("beforeend", div);
     }
 }
 
-
-
+function setColor() {
+    switch (gridColor) {
+    case "black":
+        this.style.backgroundColor = "black";
+        this.style.borderColor = "#303030";
+        break;
+    case "rgb":
+        if (this.style.backgroundColor === "white") {
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        this.style.borderWidth = "0px";
+        }
+        break;
+    default:
+        break;
+    }
+}
 
