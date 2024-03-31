@@ -4,13 +4,11 @@ console.log("js-etch-a-sketch V1.0.0\n\nCopyright © Gabriel Drouin 2024\n")
 const slider = document.getElementById("gridSlider");
 const output = document.getElementById("gridValue");
 let gridColor = "black";
-let boardSize;
+let boardSize = slider.defaultValue;
 
 // Create initial board
 document.addEventListener("DOMContentLoaded", (event) => {
-    const defaultValue = slider.defaultValue;
-    boardSize = defaultValue;
-    createBoard(defaultValue);
+    createBoard(boardSize);
     console.log(event);
 });
 
