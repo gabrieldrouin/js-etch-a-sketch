@@ -1,4 +1,4 @@
-console.log("js-etch-a-sketch V0.1.0\n\nCopyright © Gabriel Drouin 2024\n")
+console.log("js-etch-a-sketch V1.0.0\n\nCopyright © Gabriel Drouin 2024\n")
 
 // Global variables
 const slider = document.getElementById("gridSlider");
