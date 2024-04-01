@@ -1,4 +1,4 @@
-console.log("js-etch-a-sketch V1.0.0\n\nCopyright © Gabriel Drouin 2024\n")
+console.log("js-etch-a-sketch V1.1.0\n\nCopyright © Gabriel Drouin 2024\n")
 
 // Global variables
 const slider = document.getElementById("gridSlider");
@@ -58,10 +58,6 @@ function createBoard(size) {
     for (let i = 0; i < numDivs; i++) {
         let div = document.createElement("div");
         div.addEventListener("mouseover", setColor);
-        div.style.backgroundColor = "white";
-        div.style.borderStyle = "solid";
-        div.style.borderWidth = "1px";
-        div.style.borderColor = "#dcdcdc";
         board.insertAdjacentElement("beforeend", div);
     }
 }
@@ -73,7 +69,7 @@ function setColor() {
         this.style.borderColor = "#303030";
         break;
     case "rgb":
-        if (this.style.backgroundColor === "white") {
+        if (!this.style.backgroundColor) {
         this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
         this.style.borderWidth = "0px";
         }
